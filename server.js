@@ -18,32 +18,52 @@ app.get('/contactList', function(req, res){
 
 app.post('/contactList', function(req, res){
  console.log(req.body);
-    db.contactlist.insert( {name: req.body.name, email: req.body.email, number: req.body.number }, function(err, doc){
+    db.contactlist.insert( {
+        name: req.body.name, 
+        email: req.body.email, 
+        number: req.body.number 
+    }, 
+        function(err, doc){
         res.json(doc);
     });
 });
 
 app.delete('/contactList/:id', function(req, res){
     var id = req.params.id;
-    db.contactlist.remove({_id: mongoJs.ObjectId(id)}, function(err, doc){
+    db.contactlist.remove({
+        _id: mongoJs.ObjectId(id)
+    }, 
+        function(err, doc){
         res.json(doc);
     });
 });
 
 app.get('/contactList/:id', function(req, res){
     var id = req.params.id;
-    db.contactlist.findOne({_id: mongoJs.ObjectId(id)}, function(err, doc){
+    db.contactlist.findOne( {
+        _id: mongoJs.ObjectId(id)
+    }, 
+        function(err, doc){
         res.json(doc);
     });
 });
 
 app.put('/contactList/:id', function(req, res){
     var id = req.params.id;
-    db.contactlist.findAndModify({query:{_id: mongoJs.ObjectId(id)},
-                                 update: {$set: {name: req.body.name, email: req.body.email, number: req.body.number }},
-                                 new: true},function(err, doc){
-                                     res.json(doc);
-                                 });
+    db.contactlist.findAndModify( {
+        query:{
+            _id: mongoJs.ObjectId(id)},
+            update: {$set: {
+                name: req.body.name, 
+                email: req.body.email, 
+                number: req.body.number 
+            }
+                    },
+            new: true
+    },
+        function(err, doc){
+        res.json(doc);
+    });
 });
 
 app.listen(3000);
