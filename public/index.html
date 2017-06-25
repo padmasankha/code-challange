@@ -1,0 +1,80 @@
+<html>
+
+<head>
+    <title>Student Details</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            margin: 10px;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body ng-app>
+    <div class="row panel panel-success">
+        <div class="panel-heading lead">
+            <div class="row">
+                <div class="col-lg-8 col-md-8"><i class="fa fa-users"></i> Student Details</div>
+            </div>
+        </div>
+        <div class="container" ng-controller="App">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-list-ol"></i>
+                                </span>
+                                <input id="indexno" type="text" class="form-control" name="indexno" placeholder="Index No" ng-model="contact.number">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-user"></i>
+                                </span>
+                                <input id="name" type="text" class="form-control" name="name" placeholder="Name" ng-model="contact.name">
+                            </div>
+                        <td>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-envelope-o"></i>
+                                </span>
+                                <input id="email" type="text" class="form-control" name="email" placeholder="Email" ng-model="contact.email">
+                            </div>
+                        <td>
+                            <button type="button" class="btn btn-success btn-block" ng-click="addContact()">Add Contact</button>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-info" ng-click="update()">Update</button> &nbsp; &nbsp;
+                            <button type="button" class="btn btn-info" ng-click="deselect()">Clear</button>
+                        </td>
+                    </tr>
+                    <tr class="text-success" ng-repeat="contact in contactlst">
+                        <td>{{contact.name}}</td>
+                        <td>{{contact.email}}</td>
+                        <td>{{contact.number}}</td>
+                        <td>
+                            <button type="button" class="btn btn-danger text-success btn-block" ng-click="remove(contact._id)"><i class="fa fa-rupee"></i> Remove</button>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-warning" ng-click="edit(contact._id)">Edit</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.30/angular.min.js"></script>
+<script src="controllers/App.js"></script>
